@@ -1,0 +1,50 @@
+<div class="album bg-light">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-3 project-sb">
+            <div>
+                <h2>Link</h2>
+                <div class="my-2">
+                    <a href="#" class="btn btn-primary">Live Demo</a>
+                </div>
+                 <div class="my-2">
+                    <a href="{{project.githubUrl}}" class="btn btn-secondary">Github link</a>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h2>Tags</h2>
+                {{#each project.tags}}
+                <a href="#"><span class="badge badge-{{this.class}}">{{this.name}}</span></a>
+                {{/each}}
+            </div>
+            <hr>
+            <div>
+                <h2>Related Projects</h2>
+                 <div class="my-2">
+                    <a href="#">Image Gallery</a>
+                </div>
+                 <div class="my-2">
+                    <a href="#">Image Changer</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+           <li class="breadcrumb-item"><a href="#">Projects</a></li>
+             <li class="breadcrumb-item active" aria-current="page">{{project.name}}</li>
+            </ol>
+            </nav>
+            <h1>{{project.name}}</h1>
+            <h1>{{project.description}}</h1>
+        </div>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

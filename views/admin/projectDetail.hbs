@@ -1,0 +1,54 @@
+ <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Projects</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Create New</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">upload</button>
+          </div>
+        </div>
+      </div>
+
+
+      <h2>Section title</h2>
+     <form action="#" method="POST">
+       <div class="row">
+         <div class="col-md-6">
+               <div class="form-group">
+                   <label for="name">Name</label>
+                   <input type="text" name="name" class="form-control" id="name" value="{{project.name}}">
+              </div>
+        </div>
+         <div class="col-md-6">
+               <div class="form-group">
+                   <label for="name">Alias</label>
+                   <input type="text" name="alias" class="form-control" id="alias" value="{{project.alias}}" readonly>
+              </div>
+        </div>
+         <div class="col-md-6">
+               <div class="form-group">
+                   <label for="name">GithubUrl</label>
+                   <input type="text" name="githubUrl" class="form-control" id="githubUrl" {{project.githubUrl}}>
+              </div>
+        </div>
+         <div class="col-md-6">
+               <div class="form-group">
+                   <label for="name">Tags</label>
+                   <input type="text" name="name" class="form-control" id="name" value="{{#each project.tags}}{{this.name}},{{/each}}">
+              </div>
+        </div>
+         <div class="col-md-6">
+              <textarea name="desc" class="form-control" id="description" rows="5" class="form-control" placeholder="Description">{{project.description}}</textarea>
+        </div>
+
+         <div class="col-md-6">
+               <div class="form-group">
+                  <img src="/images/caspar.jpg" alt="Caspar" height="200px" width="200px">
+              </div>
+        </div>
+       </div>
+
+       <button type="submit" class="btn btn-primary my-3" id="submitData">Update</button>
+
+     </form>
+    </main>

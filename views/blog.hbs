@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <a class="p-2 text-muted" href="#">Html</a>
+      <a class="p-2 text-muted" href="#">Css</a>
+      <a class="p-2 text-muted" href="#">Javascript</a>
+      <a class="p-2 text-muted" href="#">Node.js</a>
+      <a class="p-2 text-muted" href="#">Express</a>
+      <a class="p-2 text-muted" href="#">MongoDB</a>
+      <a class="p-2 text-muted" href="#">Rest API</a>
+      <a class="p-2 text-muted" href="#">Angular</a>
+      <a class="p-2 text-muted" href="#">Bootstrap</a>
+
+    </nav>
+  </div>
+
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-12 px-0">
+      <h1 class="display-4 font-italic">Build all the pages and layouts</h1>
+      <p class="lead my-3">In this project you will build a small number guessing game. System will select a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
+      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading</a></p>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    {{#each projects}}
+    <div class="col-md-12">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+           {{#each projects.tag}}
+          <strong class="d-inline-block mb-2 text-primary"{{this.name}}</strong>
+          {{/each}}
+          <h3 class="mb-0">{{this.name}}</h3>
+          <div class="mb-1 text-muted">Nov 12</div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <div>
+          <a href="/blog/building-a-static-portfolio-site-using-bootstrap-4" class="">Continue reading</a>
+          </div>
+        </div>
+        <div class="col-auto d-none d-lg-block ml-1">
+          <img src="/images/danika.jpg" alt="parrot" height="250px" width="300px">
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

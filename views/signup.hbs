@@ -1,0 +1,25 @@
+<form class="form-signin" action="/signup" method="POST">
+  {{!-- <img class="mb-4" src="{{ site.baseurl }}/docs/{{ site.docs_version }}/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> --}}
+  <h1 class="h3 mb-3 font-weight-normal">Please sign Up</h1>
+
+  <label for="inputName" class="sr-only">Name</label>
+
+  <input type="text" id="inputEmail" class="form-control" name="name" placeholder="Name" required autofocus>
+
+  <label for="inputPhone" class="sr-only">Contact</label>
+
+  <input type="number" id="inputPhone" class="form-control" name="contact" placeholder="Contact" required autofocus>
+
+  <label for="inputPassword" class="sr-only">Password</label>
+
+  <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+  <p class="mt-3 mb-2 text-muted"></p>Have an account <a href="/login">Sign In</a></p>
+  <p class="mt-2 mb-2 text-muted">&copy; Harish Mehra 2019</p>
+</form>
