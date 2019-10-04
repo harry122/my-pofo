@@ -1,21 +1,39 @@
 const data = require('../data');
 
-module.exports.index = function(req,res) {
-   res.render("index", {
-        title: "myPortfolio- harish Mehra",
-        layout : "index-layout"
-    });
-};
+const router = require("express").Router();
 
-module.exports.projectList = function(req,res) {
+const MongoClient = require("mongodb").MongoClient;
+
+const dbUrl = "mongodb://localhost:27017";
+
+let db;
+
+MongoClient.connect(dbUrl,{useNewUrlParser:true, useUnifiedTopology: true}, function(err,client){
+    if(err){
+        console.log("Error Connected to DB: ",err);
+    } else {
+        console.log(" Connected to Database Server");
+        db = client.db('mypofo-app');
+    }
+})
+
+router.get("/", function(req,res) {
+    res.render("index", {
+         title: "myPortfolio- harish Mehra",
+         layout : "index-layout"
+     });
+ })
+
+ router.get("/projects", function(req,res) {
     res.render("project-list", {
         title:"Project-List",
         navProject: true,
         projects : data.myProjects,
     })
-};
+})
 
-module.exports.projectDetails = function(req,res) {
+
+router.get("/projects/:alias", function(req,res) {
 
     let alias = req.params.alias;
     let index = data.projectIndex[alias];
@@ -25,41 +43,43 @@ module.exports.projectDetails = function(req,res) {
         navProject: true,
         project : data.myProjects[index],
     });
-};
+})
 
-module.exports.blog = function(req,res) {
+router.get("/blog", function(req,res) {
     res.render("blog", {
     title : "My-blog",
     navBlog : true,
     projects : data.myBlog,
     });
-};
+})
 
-module.exports.blogDetails = function(req,res) {
+router.get("/blog/:alias", function(req,res) {
     let alias = req.params.alias;
     console.log(alias);
     res.render("building-a-static-portfolio-site-using-bootstrap-", {
     title : "My-blog",
     navBlog : true,
     });
-};
+})
 
-module.exports.about = function(req,res) {
+
+router.get("/about", function(req,res) {
     res.render("about", {
         title: "About"
     });
-}
+})
 
-module.exports.getLogin = function(req,res) {
+router.get("/login", function(req,res) {
     res.render("login",{
         title:"Login",
         layout:"signin-layout",
     });
-};
+})
+
 
 const users = [{name:'Harry',email:'test@test.com', password:'test'}, {email:'hello@test.com', password:'1234'}]
 
-module.exports.doLogin = function(req,res) {
+router.post("/login", function(req,res) {
     let body = req.body;
     console.log(body);
     let usr = users.filter(ele => body.email == ele.email)[0];
@@ -76,73 +96,42 @@ module.exports.doLogin = function(req,res) {
        });
     }
    
-};
+});
 
-module.exports.getSignup = function(req,res) {
+router.get("/signup", function(req,res) {
     res.render('signup', {
         title:"Create an account",
         layout:"signin-layout",
     });
-}
+})
 
-module.exports.doSignup = function(req,res) {
+router.post("/signup", function(req,res) {
     let body = req.body;
     console.log(body);
     res.redirect("/login");
-}
+})
 
-module.exports.dashboard = function(req,res) {
-    res.render('admin/dashboard', {
-        title : 'Dashboard',
-        layout: 'layout-admin'
-    });
-}
-
-module.exports.contact = function(req,res) {
+router.get("/contact", function(req,res) {
     res.render('contact',{
         title:"Contact Us",
         navContact: true,
     });
-}
+})
 
- module.exports.doContact = (req,res) => {
-     let body = req.body;
-    if(body.name == '') {
-        res.status(400).json({"message" : 'Name Field is Requried'});
-    } else {
-        res.json({"message" : "contact sumitted successfully"});
-    }
+router.post("/contact", (req,res) => {
+    let body = req.body;
+   if(body.name == '') {
+       res.status(400).json({"message" : 'Name Field is Requried'});
+   } else {
+       res.json({"message" : "contact sumitted successfully"});
+   }
 
-    }
+   });
 
-module.exports.logout = (req,res) => {
+router.get("/logout", (req,res) => {
     req.session.isLoggedIn = false;
     req.session.user = "";
     res.redirect("/login");
-}
- 
-module.exports.adminProjects = (req,res) => {
-    res.render("admin/projects", {
-        title:"Project-list",
-        layout: "layout-admin",
-        projects : data.myProjects,
-    })
-}
+});
 
-module.exports.adminProjectDetail = (req,res) => {
-    let alias = req.params.alias;
-    let index = data.projectIndex[alias];
-    res.render("admin/projectDetail", {
-        title: "Project-detail",
-        layout:"layout-admin",
-        project : data.myProjects[index],
-    })
-}
-
-module.exports.downloadResume = (req,res) =>{
-    var path = "/Harish_mehra.pdf";
-    fs.readFile(__dirname + path , function (err,data){
-        res.contentType("application/pdf");
-        res.send(data);
-    });
-}
+module.exports = router;

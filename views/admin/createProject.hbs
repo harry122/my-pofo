@@ -1,0 +1,48 @@
+ <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Projects</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <a href="/admin/projects/create" class="btn btn-sm btn-outline-secondary">Create New</a>
+            <button type="button" class="btn btn-sm btn-outline-secondary">upload</button>
+          </div>
+        </div>
+      </div>
+
+
+      <h2>Section title</h2>
+     <form action="/admin/projects/create" method="POST">
+       <div class="row">
+         <div class="col-md-6">
+               <div class="form-group">
+                   <label for="name">Name</label>
+                   <input type="text" name="name" class="form-control" id="name" placeholder="Project Name">
+              </div>
+        </div>
+         <div class="col-md-6">
+               <div class="form-group">
+                   <label for="name">GithubUrl</label>
+                   <input type="text" name="githubUrl" class="form-control" id="githubUrl" placeholder="Enter github Url">
+              </div>
+        </div>
+         <div class="col-md-6">
+               <div class="form-group">
+                   <label for="name">Tags</label>
+                   <input type="text" name="tags" class="form-control" id="tags" placeholder="Tags">
+              </div>
+        </div>
+         <div class="col-md-6">
+              <textarea name="desc" class="form-control" id="description" rows="5" class="form-control" placeholder="Description">Enter Description</textarea>
+        </div>
+
+         <div class="col-md-6">
+               <div class="form-group">
+                  <img src="/images/caspar.jpg" alt="Caspar" height="200px" width="200px">
+              </div>
+        </div>
+       </div>
+
+       <button type="submit" class="btn btn-primary my-3" id="submitData">Update</button>
+
+     </form>
+    </main>

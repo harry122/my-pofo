@@ -22,6 +22,11 @@
   border-bottom: 2px solid #ffffff;
 }
 
+.active1 {
+  color: black !important;
+  border-bottom: 2px solid #ffffff;
+}
+
 .project-sb {
   border-right: 1px solid rgba(0, 0, 0, 0.404);
 }
