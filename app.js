@@ -3,7 +3,14 @@
 const express = require("express");
 const fs = require("fs");
 const hbs = require("hbs");
+const mongoose = require("mongoose");
 const app = express();  // we will take instance of that
+
+
+mongoose.connect("mongodb://localhost:27017/mypofo-app",{useNewUrlParser:true,useUnifiedTopology:true})
+        .then(d => console.log("connected with DB"))
+        .catch(err => console.log("DB connection Error",err));
+
 const middlewares = require("./middlewares/errorhandler");
 const appMiddlewares = require("./middlewares/appMiddlewares");
 const publicRoutes = require("./routes/index");

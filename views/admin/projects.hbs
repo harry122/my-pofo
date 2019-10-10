@@ -19,7 +19,6 @@
               <th>Name</th>
               <th>Alias</th>
               <th>Github</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -27,7 +26,7 @@
             {{#each projects}}
               <td><img src="/images/dan-gold.jpg" height="200px" width="200px"></td>
               <td><a href="/admin/projects/{{this.alias}}">{{this.name}}</a></td>
-              <td><a href="/admin/projects/{{this.alias}}">{{this.name}}</a></td>
+              <td><a href="/admin/projects/{{this.alias}}">{{this.alias}}</a></td>
               <td><a href="{{this.githubUrl}}">Link</a></td>
             </tr>
              {{/each}}
