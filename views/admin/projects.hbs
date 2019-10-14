@@ -24,7 +24,7 @@
           <tbody>
             <tr>
             {{#each projects}}
-              <td><img src="/images/dan-gold.jpg" height="200px" width="200px"></td>
+              <td><img src="{{this.image}}" height="200px" width="200px"></td>
               <td><a href="/admin/projects/{{this.alias}}">{{this.name}}</a></td>
               <td><a href="/admin/projects/{{this.alias}}">{{this.alias}}</a></td>
               <td><a href="{{this.githubUrl}}">Link</a></td>

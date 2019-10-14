@@ -1,21 +1,5 @@
-const data = require('../data');
-
 const router = require("express").Router();
-
-const MongoClient = require("mongodb").MongoClient;
-
-const dbUrl = "mongodb://localhost:27017";
-
-let db;
-
-MongoClient.connect(dbUrl,{useNewUrlParser:true, useUnifiedTopology: true}, function(err,client){
-    if(err){
-        console.log("Error Connected to DB: ",err);
-    } else {
-        console.log(" Connected to Database Server");
-        db = client.db('mypofo-app');
-    }
-})
+const projectService = require("../services/projectService")
 
 router.get("/", function(req,res) {
     res.render("index", {
@@ -24,33 +8,58 @@ router.get("/", function(req,res) {
      });
  })
 
- router.get("/projects", function(req,res) {
-    res.render("project-list", {
-        title:"Project-List",
-        navProject: true,
-        projects : data.myProjects,
-    })
+ router.get("/projects", function(req,res,next) {
+
+    projectService.projectList().then(data => {
+        res.render("project-list", {
+            title:"Project-List",
+            navProject: true,
+            projects : data,
+        })
+    }).catch(err => next(err))
+
+  
 })
 
 
-router.get("/projects/:alias", function(req,res) {
+router.get("/projects/:alias", function(req,res,next) {
 
     let alias = req.params.alias;
-    let index = data.projectIndex[alias];
-    console.log(alias);
-    res.render("project-detail", {
-        title: "Project-Detail",
-        navProject: true,
-        project : data.myProjects[index],
-    });
+    projectService.getProject(alias).then(dt => {
+        res.render("project-detail", {
+            title: "Project-Detail",
+            navProject: true,
+            project : dt
+        })
+    }).catch(err => next(err))
+
+   
 })
 
-router.get("/blog", function(req,res) {
-    res.render("blog", {
-    title : "My-blog",
-    navBlog : true,
-    projects : data.myBlog,
-    });
+
+router.get("/projects/:alias/demo", function(req,res) {
+    let alias = req.params.alias;
+    projectService.getProject(alias).then(data => {
+        res.render("demo", {
+            title: "Project-detail",
+            layout: "layout-demo",
+            alias: alias,
+        })
+    }).catch(err => next(err))
+
+})
+
+router.get("/blog", function(req,res,next) {
+
+    projectService.projectList().then(data =>{
+        res.render("blog", {
+            title : "My-blog",
+            navBlog : true,
+            projects : data,
+            })
+    }).catch(err => next(err))
+
+    
 })
 
 router.get("/blog/:alias", function(req,res) {

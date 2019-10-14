@@ -24,3 +24,11 @@ module.exports.deleteProject = (alias) => {
         }).catch(err => reject(err))
     })
 }
+
+module.exports.update = (alias,bodyData) => {
+    return new Promise((resolve, reject) => {
+        Project.findOneAndUpdate({alias: alias},{$set :bodyData, $inc:{"__v": 1}},{new: true}).then(dt => {
+            resolve(dt);                                        // we have define it with new true becoz the inc doesnt provides us the update value. find
+        }).catch(err => reject(err))
+    })
+}
